@@ -1,3 +1,5 @@
+"use client";
+
 import '@/styles/globals.css';
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';

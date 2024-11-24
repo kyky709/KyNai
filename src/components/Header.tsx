@@ -1,8 +1,11 @@
-import Link from 'next/link';
-import { useState } from 'react';
+import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
   return (
     <header className="bg-white shadow-md py-4">
       <div className="container mx-auto flex items-center justify-between px-4">
@@ -10,22 +13,23 @@ const Header = () => {
           <h1 className="text-2xl font-bold text-gray-800">KyNai</h1>
         </Link>
         <nav className="hidden md:flex space-x-6">
-          <Link href="/pulls" className="hover:text-gray-500">
-            Pulls
-          </Link>
-          <Link href="/t-shirts" className="hover:text-gray-500">
-            T-shirts
-          </Link>
-          <Link href="/nouveautes" className="hover:text-gray-500">
-            Nouveautés
-          </Link>
-          <Link href="/contact" className="hover:text-gray-500">
-            Contact
-          </Link>
+          {["pulls", "t-shirts", "nouveautes", "contact"].map((page) => (
+            <Link
+              key={page}
+              href={`/${page}`}
+              className={`hover:text-gray-500 ${
+                router.pathname.includes(page) ? "font-bold underline" : ""
+              }`}
+            >
+              {page.charAt(0).toUpperCase() + page.slice(1)}
+            </Link>
+          ))}
         </nav>
         <button
           className="md:hidden"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
+          aria-expanded={isOpen}
         >
           <svg
             className="w-6 h-6"
@@ -46,26 +50,18 @@ const Header = () => {
       {isOpen && (
         <nav className="md:hidden bg-white shadow-md p-4">
           <ul className="space-y-2">
-            <li>
-              <Link href="/pulls" className="hover:text-gray-500">
-                Pulls
-              </Link>
-            </li>
-            <li>
-              <Link href="/t-shirts" className="hover:text-gray-500">
-                T-shirts
-              </Link>
-            </li>
-            <li>
-              <Link href="/nouveautes" className="hover:text-gray-500">
-                Nouveautés
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-gray-500">
-                Contact
-              </Link>
-            </li>
+            {["pulls", "t-shirts", "nouveautes", "contact"].map((page) => (
+              <li key={page}>
+                <Link
+                  href={`/${page}`}
+                  className={`hover:text-gray-500 ${
+                    router.pathname.includes(page) ? "font-bold underline" : ""
+                  }`}
+                >
+                  {page.charAt(0).toUpperCase() + page.slice(1)}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       )}
