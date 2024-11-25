@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 
 export default {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}", // Correction du chemin
+    "./src/**/*.{js,ts,jsx,tsx}", // Correction du chemin
   ],
   theme: {
     extend: {

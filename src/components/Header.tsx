@@ -1,10 +1,12 @@
+"use client"; // Indique que ce composant est côté client
+
 import Link from "next/link";
+import { usePathname } from "next/navigation"; // Utilisation avec App Router
 import { useState } from "react";
-import { useRouter } from "next/router";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
+  const pathname = usePathname(); // Remplace `useRouter` pour App Router
 
   return (
     <header className="bg-white shadow-md py-4">
@@ -18,7 +20,7 @@ const Header = () => {
               key={page}
               href={`/${page}`}
               className={`hover:text-gray-500 ${
-                router.pathname.includes(page) ? "font-bold underline" : ""
+                pathname.includes(page) ? "font-bold underline" : ""
               }`}
             >
               {page.charAt(0).toUpperCase() + page.slice(1)}
@@ -55,7 +57,7 @@ const Header = () => {
                 <Link
                   href={`/${page}`}
                   className={`hover:text-gray-500 ${
-                    router.pathname.includes(page) ? "font-bold underline" : ""
+                    pathname.includes(page) ? "font-bold underline" : ""
                   }`}
                 >
                   {page.charAt(0).toUpperCase() + page.slice(1)}
