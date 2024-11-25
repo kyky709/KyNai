@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Définition des classes personnalisées */
+@layer utilities {
+  .bg-background {
+    background-color: var(--background);
+  }
+  .bg-card-background {
+    background-color: var(--card-background);
+  }
+  .text-foreground {
+    color: var(--foreground);
+  }
+  .bg-header-gradient {
+    background-image: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
+  }
+}
+
 /* Variables de couleurs personnalisées */
 :root {
   --background: #0b132a; /* Fond sombre global */
@@ -9,43 +25,36 @@
   --primary: #6c63ff;    /* Couleur primaire */
   --secondary: #ff6f61;  /* Couleur secondaire */
   --neutral: #212529;    /* Fond pour éléments neutres */
-  --card-background: #1a233a; /* Fond sombre pour sections standard */
+  --card-background: #0b132a; /* Fond sombre pour sections standard */
   --gradient-1: #6b46c1; /* Couleur dégradée 1 */
   --gradient-2: #b83280; /* Couleur dégradée 2 */
 }
 
 /* Fond global */
-body {
-  background-color: var(--background); /* Couleur sombre partout */
-  color: var(--foreground);
-  font-family: 'Poppins', sans-serif;
+html, body, #__next {
+  @apply bg-background text-foreground;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  min-height: 100%;
 }
 
 /* Header */
 header {
-  background-image: linear-gradient(to right, var(--gradient-1), var(--gradient-2));
-  color: var(--foreground);
+  @apply bg-header-gradient text-foreground;
   padding: 1rem 0;
   text-align: center;
 }
 
 /* Sections standard */
 section {
-  background-color: var(--card-background); /* Fond sombre */
+  @apply bg-background text-foreground;
   padding: 2rem;
   margin: 1rem 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Section spéciale : À propos de KyNai */
 section.about {
-  background-image: linear-gradient(to right, var(--gradient-1), var(--gradient-2)); /* Dégradé spécial */
-  color: var(--foreground); /* Texte en blanc */
+  @apply bg-header-gradient text-foreground;
   padding: 2rem;
   margin: 1.5rem 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -84,13 +93,11 @@ button:hover {
 
 /* Swiper */
 .swiper {
-  @apply w-full h-full;
-  background-color: var(--card-background); /* Fond sombre pour le Swiper */
+  @apply w-full h-full bg-background; /* Assure un fond sombre */
 }
 
 .swiper-slide {
-  @apply flex items-center justify-center text-center text-lg;
-  background-color: var(--neutral); /* Fond pour chaque slide */
+  @apply flex items-center justify-center text-center text-lg bg-background; /* Assure un fond sombre */
 }
 
 .swiper-slide img {
@@ -99,10 +106,7 @@ button:hover {
 
 /* Footer */
 footer {
-  background-color: var(--background);
-  color: var(--foreground);
-  text-align: center;
-  padding: 1rem 0;
+  @apply bg-background text-foreground text-center py-4;
 }
 
 footer a {
@@ -126,7 +130,7 @@ footer a:hover {
 }
 
 .text-shadow {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre de texte classique */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .shadow-lg {

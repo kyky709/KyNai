@@ -12,9 +12,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <html>
+    <html lang="fr">
       <head />
-      <body>{children}</body>
+      <body className="bg-background text-foreground">{children}</body>
     </html>
   );
 }

@@ -33,7 +33,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="bg-gray-100">
+      <main className="bg-background">
         <Header />
         <SwiperComponent />
 
@@ -50,7 +50,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 bg-gray-200">
+        <section className="py-16 bg-header-gradient">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8 reveal">
               À propos de KyNai
@@ -79,7 +79,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer className="bg-gray-900 text-white py-4">
+      <footer className="bg-background text-foreground py-4">
         <div className="container mx-auto text-center">
           <p>© 2024 KyNai. Tous droits réservés.</p>
         </div>
